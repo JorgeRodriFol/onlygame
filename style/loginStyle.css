@@ -1,0 +1,267 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background-color: rgb(33, 14, 66);
+}
+
+.parent {
+  width: 100vw;
+  height: 100vh;
+}
+
+.menuTop {
+  z-index: 10;
+  height: 11vh;
+  grid-area: 1 / 1 / 2 / 3;
+  border-bottom: 1px solid #09f;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.mainPage {
+  height: 8vh;
+  margin-left: 3vw;
+  margin-right: 9vw;
+  align-items: center;
+}
+
+.mainPage > img {
+  height: 8vh;
+  object-fit: contain;
+}
+
+@font-face {
+  font-family: "GlichInside";
+  src: url("./Fuentes/glitch_inside/Glitch\ inside.otf");
+}
+
+@keyframes changeColor {
+  0% {
+    color: #09f;
+  }
+  100% {
+    color: #c0f;
+  }
+}
+
+.breadcrumb {
+  color: white;
+  text-align: center;
+  font-family: GlichInside;
+  padding-right: 28vw;
+  font-size: 2.5vh;
+  display: flex;
+  justify-content: center;
+}
+
+.breadcrumb a {
+  color: white;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+  animation: changeColor 5s infinite alternate;
+}
+
+.search-container {
+  text-align: center;
+  border-radius: 50px;
+  background: #d9d9d9;
+  display: flex;
+  margin-right: 15vw;
+}
+
+.menuTop input[type="text"] {
+  padding: 3%;
+  width: 15vw;
+  border-radius: 50px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  outline: none;
+  background: #d9d9d9;
+}
+
+.menuTop input[type="text"]:hover,
+.menuTop input[type="text"]:active {
+  background: #f3f2f2;
+}
+
+.menuTop button {
+  border-radius: 50px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  cursor: pointer;
+  border-left: solid black 0.1em;
+  background: #d9d9d9;
+}
+button > img {
+  width: 22.207px;
+  height: 25.379px;
+}
+
+button:hover {
+  background: #f3f2f2;
+}
+
+.carrito {
+  height: 6vh;
+  margin-right: 5vw;
+}
+
+.carrito > img {
+  height: 6vh;
+  object-fit: contain;
+}
+
+.body form {
+  color: white;
+}
+
+.body {
+  height: 89vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 10vh;
+  gap: 25vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+form input[type="text"] {
+  width: 466px;
+  height: 47px;
+  border: 5px solid;
+  border-image: linear-gradient(to bottom, #0099ff, #cc00fff9);
+  border-image-slice: 1;
+}
+
+.body img {
+  height: 70vh;
+}
+
+.body div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10vw;
+}
+
+.body div button {
+  width: 6vw;
+  height: 3vh;
+  border-radius: 50px;
+  font-size: 2vh;
+}
+
+@media screen and (max-width: 1500px) {
+  .body {
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    margin-top: 5vh;
+  }
+
+  .breadcrumb {
+    padding-right: 10vw;
+  }
+
+  .search-container {
+    margin-right: 5vw;
+  }
+
+  .menuTop input[type="text"] {
+    width: 10vw;
+  }
+
+  .body {
+    margin-top: 11vh;
+  }
+
+  .body img {
+    height: auto;
+    width: 70%;
+  }
+
+  .body div {
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .body div button {
+    width: 20vw;
+    margin-top: 2vh;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menuTop {
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 20px;
+  }
+
+  .mainPage {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .breadcrumb {
+    padding-right: 0;
+    font-size: 1.5rem;
+  }
+
+  .search-container {
+    margin-right: 0;
+  }
+
+  .menuTop input[type="text"] {
+    width: 100%;
+  }
+
+  .menuTop button {
+    border-left: none;
+    margin-top: 10px;
+  }
+
+  .carrito {
+    margin-right: 0;
+    margin-top: 10px;
+  }
+
+  .body {
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    margin-top: 5vh;
+  }
+
+  .body {
+    margin-top: 11vh;
+  }
+
+  .body input[type="text"] {
+    width: 90vw;
+  }
+
+  .body img {
+    height: auto;
+    width: 70%;
+  }
+
+  .body div {
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .body div button {
+    width: 20vw;
+    margin-top: 2vh;
+  }
+}
