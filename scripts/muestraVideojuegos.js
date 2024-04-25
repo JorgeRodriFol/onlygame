@@ -51,7 +51,7 @@ function mostrarvideojuegos(videojuegos) {
     titulo.textContent = videojuegos[i]["titulo"];
     info.appendChild(titulo);
     let precio = document.createElement("h4");
-    precio.textContent = videojuegos[i]["precio"];
+    precio.textContent = videojuegos[i]["precio"] + "€";
     info.appendChild(precio);
     enlace.appendChild(info);
     tarjeta.appendChild(enlace);
