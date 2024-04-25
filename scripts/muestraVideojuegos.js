@@ -1,4 +1,4 @@
-llamarAJAX("");
+llamarAJAX("buscar", "");
 
 var busqueda = document.querySelector(".search-container input");
 busqueda.addEventListener("input", function () {
