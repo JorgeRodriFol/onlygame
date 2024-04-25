@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-04-2024 a las 20:12:23
+-- Tiempo de generación: 25-04-2024 a las 22:08:34
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -45,6 +45,25 @@ INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`) VALUES
 (7, 'sandbox'),
 (5, 'supervivencia'),
 (1, 'terror');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `correo` varchar(50) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `clave` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`correo`, `nombre`, `clave`) VALUES
+('pacosuarez77@gmail.com', 'Paco', 'pacosuarez77');
 
 -- --------------------------------------------------------
 
@@ -125,6 +144,12 @@ INSERT INTO `videojuegos_categorias` (`id_videojuego`, `id_categoria`) VALUES
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`),
   ADD UNIQUE KEY `nombre_categoria` (`nombre_categoria`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`correo`);
 
 --
 -- Indices de la tabla `videojuegos`
