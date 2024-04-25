@@ -3,10 +3,22 @@ llamarAJAX("");
 var busqueda = document.querySelector(".search-container input");
 busqueda.addEventListener("input", function () {
   console.log(document.querySelector(".search-container input").value);
-  llamarAJAX(document.querySelector(".search-container input").value);
+  llamarAJAX("buscar", document.querySelector(".search-container input").value);
 });
 
-function llamarAJAX(input) {
+var filtro = document.querySelectorAll(".genero input");
+for (let i = 0; i < filtro.length; i++) {
+  filtro[i].addEventListener("change", function () {
+    if (filtro[i].checked) {
+      console.log(filtro[i].value);
+      llamarAJAX("filtrar", filtro[i].value);
+    } else {
+      llamarAJAX("filtrar", "");
+    }
+  });
+}
+
+function llamarAJAX(accion, input) {
   //Recogida de datos en un array
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -16,7 +28,8 @@ function llamarAJAX(input) {
   };
   xhttp.open("POST", "../gestion/muestraVideojuegos.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("busqueda=" + input);
+  if (accion == "buscar") xhttp.send("busqueda=" + input);
+  else if (accion == "filtrar") xhttp.send("filtros=" + input);
 }
 
 function mostrarvideojuegos(videojuegos) {
