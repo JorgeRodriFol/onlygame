@@ -8,12 +8,12 @@ body {
 .parent {
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .menuTop {
-  z-index: 10;
   height: 11vh;
-  grid-area: 1 / 1 / 2 / 3;
   border-bottom: 1px solid #09f;
   background-color: #000;
   display: flex;
@@ -116,25 +116,26 @@ button:hover {
   object-fit: contain;
 }
 
-.body form {
-  color: white;
-}
-
-.body {
+body .body {
   height: 89vh;
   display: flex;
   justify-content: center;
+  flex-direction: row;
   margin-top: 10vh;
   gap: 25vw;
 }
 
-form {
+body .body .registro {
+  color: white;
+}
+
+body .registro {
   display: flex;
   flex-direction: column;
   gap: 2vh;
 }
 
-form input[type="text"] {
+body .registro input[type="text"] {
   width: 466px;
   height: 47px;
   border: 5px solid;
@@ -142,126 +143,55 @@ form input[type="text"] {
   border-image-slice: 1;
 }
 
-.body img {
-  height: 70vh;
-}
-
-.body div {
+.body .registro div {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10vw;
+  flex-direction: row;
 }
 
-.body div button {
+.body .registro div button {
   width: 6vw;
   height: 3vh;
   border-radius: 50px;
   font-size: 2vh;
 }
 
-@media screen and (max-width: 1500px) {
-  .body {
-    flex-direction: column;
-    align-items: center;
-    gap: 2vh;
-    margin-top: 5vh;
-  }
-
-  .breadcrumb {
-    padding-right: 10vw;
-  }
-
-  .search-container {
-    margin-right: 5vw;
-  }
-
-  .menuTop input[type="text"] {
-    width: 10vw;
-  }
-
-  .body {
-    margin-top: 11vh;
-  }
-
-  .body img {
-    height: auto;
-    width: 70%;
-  }
-
-  .body div {
-    flex-direction: column;
-    gap: 2vh;
-  }
-
-  .body div button {
-    width: 20vw;
-    margin-top: 2vh;
-  }
+body .body .login {
+  color: white;
 }
 
-@media screen and (max-width: 768px) {
-  .menuTop {
-    flex-direction: column;
-    height: auto;
-    padding-bottom: 20px;
-  }
+body .login {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
 
-  .mainPage {
-    margin-left: 0;
-    margin-right: 0;
-  }
+body .login input[type="text"] {
+  width: 466px;
+  height: 47px;
+  border: 5px solid;
+  border-image: linear-gradient(to bottom, #0099ff, #cc00fff9);
+  border-image-slice: 1;
+}
 
-  .breadcrumb {
-    padding-right: 0;
-    font-size: 1.5rem;
-  }
+body .body img {
+  height: 70vh;
+  width: auto;
+}
 
-  .search-container {
-    margin-right: 0;
-  }
+.body .login div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10vw;
+  flex-direction: row;
+}
 
-  .menuTop input[type="text"] {
-    width: 100%;
-  }
-
-  .menuTop button {
-    border-left: none;
-    margin-top: 10px;
-  }
-
-  .carrito {
-    margin-right: 0;
-    margin-top: 10px;
-  }
-
-  .body {
-    flex-direction: column;
-    align-items: center;
-    gap: 2vh;
-    margin-top: 5vh;
-  }
-
-  .body {
-    margin-top: 11vh;
-  }
-
-  .body input[type="text"] {
-    width: 90vw;
-  }
-
-  .body img {
-    height: auto;
-    width: 70%;
-  }
-
-  .body div {
-    flex-direction: column;
-    gap: 2vh;
-  }
-
-  .body div button {
-    width: 20vw;
-    margin-top: 2vh;
-  }
+.body .login div button {
+  width: 6vw;
+  height: 3vh;
+  border-radius: 50px;
+  font-size: 2vh;
 }
