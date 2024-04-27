@@ -13,7 +13,7 @@
   <div class="parent">
     <div class="menuTop">
       <a class="mainPage" href="./index.php">
-        <img src="../../img/OnlyGamesLogo.png" alt="Pagina principal" />
+        <img src="../../img/assets/OnlyGamesLogo.png" alt="Pagina principal" />
       </a>
       <div class="breadcrumb">
         <span>
@@ -23,10 +23,10 @@
       <div class="search-container">
         <input type="text" placeholder="Buscar..." />
         <button type="submit">
-          <img src="../../img/lupa.png" alt="buscar" />
+          <img src="../../img/assets/lupa.png" alt="buscar" />
         </button>
       </div>
-      <a class="carrito" href="./carrito.php"><img src="../../img/carrito-de-compras.png" alt="carrito" /></a>
+      <a class="carrito" href="./carrito.php"><img src="../../img/assets/carrito-de-compras.png" alt="carrito" /></a>
       <div class="log_in">
         <a href="./login.php">
           <h3>LOG IN</h3>

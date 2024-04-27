@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-04-2024 a las 22:08:34
+-- Tiempo de generación: 27-04-2024 a las 13:46:57
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -49,21 +49,44 @@ INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `plataformas`
+--
+
+CREATE TABLE `plataformas` (
+  `id_plataforma` int(2) NOT NULL,
+  `nombre_plataforma` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `plataformas`
+--
+
+INSERT INTO `plataformas` (`id_plataforma`, `nombre_plataforma`) VALUES
+(2, 'ps4'),
+(1, 'ps5'),
+(3, 'switch'),
+(4, 'xbox one'),
+(5, 'xbox x');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
   `correo` varchar(50) NOT NULL,
   `nombre` varchar(20) NOT NULL,
-  `clave` varchar(50) NOT NULL
+  `clave` varchar(50) NOT NULL,
+  `imagen` varchar(50) DEFAULT 'sin_img.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`correo`, `nombre`, `clave`) VALUES
-('pacosuarez77@gmail.com', 'Paco', 'pacosuarez77');
+INSERT INTO `usuarios` (`correo`, `nombre`, `clave`, `imagen`) VALUES
+('pacosuarez77@gmail.com', 'Paco', 'pacosuarez77', 'sin_img.png');
 
 -- --------------------------------------------------------
 
@@ -134,6 +157,47 @@ INSERT INTO `videojuegos_categorias` (`id_videojuego`, `id_categoria`) VALUES
 (8, 4),
 (8, 6);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `videojuegos_pataformas`
+--
+
+CREATE TABLE `videojuegos_pataformas` (
+  `id_videojuego` int(3) NOT NULL,
+  `id_plataforma` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `videojuegos_pataformas`
+--
+
+INSERT INTO `videojuegos_pataformas` (`id_videojuego`, `id_plataforma`) VALUES
+(1, 3),
+(2, 1),
+(2, 2),
+(2, 3),
+(2, 4),
+(2, 5),
+(3, 1),
+(3, 5),
+(4, 2),
+(4, 3),
+(4, 4),
+(5, 1),
+(5, 2),
+(5, 3),
+(5, 4),
+(5, 5),
+(6, 1),
+(6, 2),
+(6, 3),
+(6, 4),
+(6, 5),
+(7, 2),
+(8, 1),
+(8, 2);
+
 --
 -- Índices para tablas volcadas
 --
@@ -144,6 +208,13 @@ INSERT INTO `videojuegos_categorias` (`id_videojuego`, `id_categoria`) VALUES
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`),
   ADD UNIQUE KEY `nombre_categoria` (`nombre_categoria`);
+
+--
+-- Indices de la tabla `plataformas`
+--
+ALTER TABLE `plataformas`
+  ADD PRIMARY KEY (`id_plataforma`),
+  ADD UNIQUE KEY `nombre_plataforma` (`nombre_plataforma`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -163,6 +234,13 @@ ALTER TABLE `videojuegos`
 ALTER TABLE `videojuegos_categorias`
   ADD PRIMARY KEY (`id_videojuego`,`id_categoria`),
   ADD KEY `id_categoria` (`id_categoria`);
+
+--
+-- Indices de la tabla `videojuegos_pataformas`
+--
+ALTER TABLE `videojuegos_pataformas`
+  ADD PRIMARY KEY (`id_videojuego`,`id_plataforma`),
+  ADD KEY `id_plataforma` (`id_plataforma`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -190,6 +268,13 @@ ALTER TABLE `videojuegos`
 ALTER TABLE `videojuegos_categorias`
   ADD CONSTRAINT `videojuegos_categorias_ibfk_1` FOREIGN KEY (`id_videojuego`) REFERENCES `videojuegos` (`id_videojuego`),
   ADD CONSTRAINT `videojuegos_categorias_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
+
+--
+-- Filtros para la tabla `videojuegos_pataformas`
+--
+ALTER TABLE `videojuegos_pataformas`
+  ADD CONSTRAINT `videojuegos_pataformas_ibfk_1` FOREIGN KEY (`id_videojuego`) REFERENCES `videojuegos` (`id_videojuego`),
+  ADD CONSTRAINT `videojuegos_pataformas_ibfk_2` FOREIGN KEY (`id_plataforma`) REFERENCES `plataformas` (`id_plataforma`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

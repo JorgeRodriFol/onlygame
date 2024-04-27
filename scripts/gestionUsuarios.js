@@ -32,10 +32,11 @@ function login() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(this.response);
-      if (this.response == "Correcto") {
-        document.cookie =
-          "nombreCliente=" + document.getElementById("nombre").value;
+      let resultado = JSON.parse(this.readyState);
+      console.log(resultado);
+      if (resultado != "404") {
+        document.cookie = "nombreCliente=" + resultado[0]["correo"];
+        document.cookie = "imgCliente=" + resultado[0]["imagen"];
         window.location.href = "index.php";
       } else {
         let h3 = document.createElement("h3");

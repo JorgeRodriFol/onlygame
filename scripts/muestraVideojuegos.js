@@ -43,7 +43,10 @@ function mostrarvideojuegos(videojuegos) {
     let enlace = document.createElement("a");
     enlace.setAttribute("href", "./producto.php");
     let imagen = document.createElement("img");
-    imagen.setAttribute("src", "../../img/" + videojuegos[i]["imagen"]);
+    imagen.setAttribute(
+      "src",
+      "../../img/portadas/" + videojuegos[i]["imagen"]
+    );
     enlace.appendChild(imagen);
     let info = document.createElement("div");
     info.className = "info";
@@ -53,8 +56,25 @@ function mostrarvideojuegos(videojuegos) {
     let precio = document.createElement("h4");
     precio.textContent = videojuegos[i]["precio"] + "€";
     info.appendChild(precio);
+    let categorias = document.createElement("p");
+    categorias.textContent = truncarTexto(
+      "Categorias: " + videojuegos[i]["categorias"],
+      26
+    );
+    info.appendChild(categorias);
+    let plataformas = document.createElement("p");
+    plataformas.textContent = truncarTexto(videojuegos[i]["plataformas"], 10);
+    info.appendChild(plataformas);
     enlace.appendChild(info);
     tarjeta.appendChild(enlace);
     body.appendChild(tarjeta);
+  }
+}
+
+function truncarTexto(texto, longitudMaxima) {
+  if (texto.length > longitudMaxima) {
+    return texto.substring(0, longitudMaxima) + "...";
+  } else {
+    return texto;
   }
 }

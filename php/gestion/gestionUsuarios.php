@@ -28,10 +28,10 @@ if (isset($_POST['registro'])) {
 
     if ($result->num_rows > 0) {
         // Obtener los nombres de los campos
-
-        echo "Correcto";
+        $usuario = mysqli_fetch_assoc($result);
+        echo json_encode($usuario);
     } else {
-        echo "No se encontraron registros en la base de datos.";
+        echo json_encode("404");
     }
 }
 
