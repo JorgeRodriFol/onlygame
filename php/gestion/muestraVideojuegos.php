@@ -3,6 +3,7 @@ $con = new mysqli("localhost", "root", "", "onlygames");
 if (isset($_POST['busqueda'])) {
     $input = $textos = $_POST['busqueda'];
     $consulta = "SELECT 
+    v.id_videojuego,
     v.titulo, 
     v.precio, 
     v.imagen,

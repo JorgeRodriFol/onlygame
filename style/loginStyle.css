@@ -2,7 +2,7 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  background-color: rgb(33, 14, 66);
+  overflow: hidden;
 }
 
 .parent {
@@ -117,12 +117,18 @@ button:hover {
 }
 
 body .body {
-  height: 89vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: row;
-  margin-top: 10vh;
+  padding-top: 10vh;
   gap: 25vw;
+  background-image: url("../img/assets/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
 body .body .registro {

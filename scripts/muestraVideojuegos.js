@@ -41,7 +41,14 @@ function mostrarvideojuegos(videojuegos) {
     let tarjeta = document.createElement("div");
     tarjeta.className = "tarjeta";
     let enlace = document.createElement("a");
-    enlace.setAttribute("href", "./producto.php");
+    console.log(videojuegos[i]["id_videojuego"]);
+    enlace.addEventListener("click", function (event) {
+      event.preventDefault();
+      let parametros = new URLSearchParams();
+      parametros.append("videojuegoID", videojuegos[i]["id_videojuego"]);
+      let url = "./producto.php?" + parametros.toString();
+      window.location.href = url;
+    });
     let imagen = document.createElement("img");
     imagen.setAttribute(
       "src",

@@ -1,3 +1,25 @@
+if (window.location.pathname != "/onlygame/php/paginas/login.php")
+  if (document.cookie.includes("nombreCliente")) {
+    let usuario = document.querySelector(".log_in");
+    usuario.innerHTML = "";
+    let img = document.createElement("img");
+    img.setAttribute(
+      "src",
+      "../../img/usuarios/" + document.cookie.substring(length + 49)
+    );
+    img.style.height = "50px";
+    usuario.appendChild(img);
+  } else {
+    let usuario = document.querySelector(".log_in");
+    usuario.innerHTML = "";
+    let enlace = document.createElement("a");
+    enlace.setAttribute("href", "./login.php");
+    let texto = document.createElement("h3");
+    texto.textContent = "LOG IN";
+    enlace.appendChild(texto);
+    usuario.appendChild(enlace);
+  }
+
 function registrar() {
   if (
     document.querySelector(".registro #password").value ==
@@ -32,11 +54,12 @@ function login() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      let resultado = JSON.parse(this.readyState);
+      let resultado = JSON.parse(this.responseText);
       console.log(resultado);
       if (resultado != "404") {
-        document.cookie = "nombreCliente=" + resultado[0]["correo"];
-        document.cookie = "imgCliente=" + resultado[0]["imagen"];
+        console.log(resultado);
+        document.cookie = "nombreCliente=" + resultado["correo"];
+        document.cookie = "imgCliente=" + resultado["imagen"];
         window.location.href = "index.php";
       } else {
         let h3 = document.createElement("h3");

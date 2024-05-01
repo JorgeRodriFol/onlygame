@@ -6,13 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <link rel="stylesheet" href="../../style/productoStyle.css" />
+  <script src="../../scripts/muestraDatos.js"></script>
 </head>
 
 <body>
   <div class="parent">
     <div class="menuTop">
       <a class="mainPage" href="./index.php">
-        <img src="../img/OnlyGamesLogo.png" alt="Pagina principal" />
+        <img src="../../img/assets/OnlyGamesLogo.png" alt="Pagina principal" />
       </a>
       <div class="breadcrumb">
         <a href="./index.php">Inicio</a> &gt;
@@ -21,10 +22,10 @@
       <div class="search-container">
         <input type="text" placeholder="Buscar..." />
         <button type="submit">
-          <img src="../img/lupa.png" alt="buscar" />
+          <img src="../../img/assets/lupa.png" alt="buscar" />
         </button>
       </div>
-      <a class="carrito" href="./carrito.php"><img src="../img/carrito-de-compras.png" alt="carrito" /></a>
+      <a class="carrito" href="./carrito.php"><img src="../../img/assets/carrito-de-compras.png" alt="carrito" /></a>
       <div class="log_in">
         <a href="./login.php">
           <h3>LOG IN</h3>
@@ -34,17 +35,17 @@
     <div class="body">
       <div class="juego">
         <div class="portada">
-          <img src="../img/ZeldaTOTK.png" alt="portada" />
+          <img src="../img/ZeldaTOTK.png" alt="portada" id="portada" />
           <button type="button" class="addCarrito">
             Añadir al carrito
-            <img src="../img/anadir-a-la-cesta.png" alt="" />
+            <img src="../../img/assets/anadir-a-la-cesta.png" alt="" />
           </button>
         </div>
         <div class="detalles">
-          <h1>ZELDA TEARS OF THE KINGDOM</h1>
-          <h1>60.00€</h1>
-          <h4>Categorias: ROL, Aventuras, Fantasia</h4>
-          <h4>Plataformas: Switch</h4>
+          <h1 id="titulo">ZELDA TEARS OF THE KINGDOM</h1>
+          <h1 id="precio">60.00€</h1>
+          <h4 id="categorias">Categorias: ROL, Aventuras, Fantasia</h4>
+          <h4 id="plataformas">Plataformas: Switch</h4>
           <h4>Descripcion</h4>
           <div class="descripcion">
             <p>
@@ -60,7 +61,7 @@
         <div class="saga">
           <div class="tarjeta">
             <a href="./producto.php">
-              <img src="../img/ZeldaTOTK.png" alt="" />
+              <img src="../../img/ZeldaTOTK.png" alt="" />
               <div class="info">
                 <h4>Zelda Tears of the Kingdom</h4>
               </div>

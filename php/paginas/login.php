@@ -12,13 +12,13 @@
 <body>
   <div class="menuTop">
     <a class="mainPage" href="./index.php" tabindex="1">
-      <img src="../../img/OnlyGamesLogo.png" alt="Pagina principal" />
+      <img src="../../img/assets/OnlyGamesLogo.png" alt="Pagina principal" />
     </a>
     <div class="breadcrumb">
       <a href="./index.php" tabindex="2">Inicio</a> &gt;
       <span>Log In</span>
     </div>
-    <a class="carrito" href="./carrito.php" tabindex="5"><img src="../../img/carrito-de-compras.png" alt="carrito" /></a>
+
   </div>
   <div class="body">
     <div class="registro">

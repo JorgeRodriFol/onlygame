@@ -7,6 +7,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="../../style/indexStyle.css" />
   <script src="../../scripts/muestraVideojuegos.js" defer></script>
+  <script src="../../scripts/gestionUsuarios.js" defer></script>
 </head>
 
 <body>
