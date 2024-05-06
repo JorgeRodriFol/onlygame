@@ -1,12 +1,22 @@
 body {
   width: 100vw;
   margin: 0;
-  background-color: rgb(33, 14, 66);
+  overflow: hidden;
+}
+
+.parent {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 7fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
 .menuTop {
   z-index: 10;
   height: 11vh;
+  grid-area: 1 / 1 / 2 / 3;
   border-bottom: 1px solid #09f;
   background-color: #000;
   display: flex;
@@ -123,16 +133,15 @@ button:hover {
 }
 
 .body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 89vh;
+  width: 100vw;
+  grid-area: 2 / 2 / 3 / 3;
   background-image: url("../img/assets/fondo.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   max-height: 100vh;
   overflow-y: auto;
-  width: 100vw;
 }
 
 .juego {
@@ -280,159 +289,4 @@ button:hover {
 .tarjeta:active,
 .flecha:active {
   transform: scale(1.05);
-}
-
-@media screen and (max-width: 1500px) {
-  .parent {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .menuTop {
-    width: 100vw;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8vw;
-  }
-
-  .menuTop * {
-    margin: 0px;
-  }
-
-  .breadcrumb {
-    padding-right: 3vw;
-  }
-
-  .breadcrumb span {
-    width: 25vw;
-  }
-
-  input[type="text"] {
-    width: 0px;
-    height: 0px;
-    visibility: hidden;
-  }
-
-  button {
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-    border-left-style: none;
-  }
-
-  .categoria {
-    flex-direction: column;
-  }
-
-  .body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .flecha {
-    height: 0px;
-  }
-
-  .tarjeta {
-    width: 25vw;
-  }
-
-  .tarjeta img {
-    width: 25vw;
-  }
-
-  .info > h4 {
-    font-size: 1.25vw;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .menuTop {
-    flex-direction: column;
-    height: auto;
-    padding-bottom: 20px;
-  }
-
-  .mainPage {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .breadcrumb {
-    padding-right: 0;
-    font-size: 1.5rem;
-  }
-
-  .search-container {
-    margin-right: 0;
-  }
-
-  .menuTop input[type="text"] {
-    width: 100%;
-  }
-
-  .menuTop button {
-    border-left: none;
-    margin-top: 10px;
-  }
-
-  .carrito {
-    margin-right: 0;
-    margin-top: 10px;
-  }
-
-  .log_in {
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .body {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .juego {
-    display: flex;
-    justify-content: center;
-    margin-top: 75px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .detalles {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .descripcion {
-    width: 100vw;
-    font-size: 5vw;
-  }
-
-  .detalles h1 {
-    font-size: 8vw;
-    text-align: center;
-  }
-
-  .portada > img {
-    width: 75vw;
-  }
-
-  .tarjeta {
-    width: 50vw;
-  }
-
-  .tarjeta img {
-    width: 50vw;
-  }
-
-  .info > h4 {
-    font-size: 3vw;
-  }
 }
