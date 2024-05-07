@@ -22,6 +22,7 @@
   </div>
   <div class="body">
     <div class="registro">
+      <h1>REGISTRATE</h1>
       <label for="nombre">Nombre</label>
       <input type="text" name="nombre" id="nombre" />
       <label for="correo">Correo</label>
@@ -36,6 +37,7 @@
       </div>
     </div>
     <div class="login">
+      <h1>LOG IN</h1>
       <label for="correo">Correo</label>
       <input type="text" name="correo" id="correo" />
       <label for="password">Contraseña</label>

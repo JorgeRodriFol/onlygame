@@ -60,7 +60,7 @@ body {
 .search-container {
   text-align: center;
   display: flex;
-  margin-right: 15vw;
+  margin-right: 10vw;
 }
 
 input[type="text"] {
@@ -163,6 +163,7 @@ label {
   background-attachment: fixed;
   max-height: 100vh;
   overflow-y: auto;
+  padding-left: 7.5%;
 }
 
 .body > h1,
@@ -194,6 +195,7 @@ label {
   border: solid black 0.2em;
   margin-bottom: 30px;
   transition: 0.2s;
+  float: left;
 }
 
 .tarjeta a {
