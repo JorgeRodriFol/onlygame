@@ -23,6 +23,7 @@ function llamarAJAX(accion, input) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
       mostrarvideojuegos(this.responseText);
     }
   };
@@ -33,9 +34,9 @@ function llamarAJAX(accion, input) {
 }
 
 function mostrarvideojuegos(videojuegos) {
+  console.log(videojuegos);
   let body = document.querySelector(".body");
   videojuegos = JSON.parse(videojuegos);
-  console.log(videojuegos);
   body.innerHTML = "";
   for (let i = 0; i < videojuegos.length; i++) {
     let tarjeta = document.createElement("div");
