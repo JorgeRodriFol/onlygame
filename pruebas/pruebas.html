@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ventana Modal</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* styles.css */
+
+      /* Estilos para el modal */
+      .modal {
+        display: none; /* Ocultar por defecto */
+        position: fixed; /* Fijar posición en pantalla */
+        z-index: 1; /* Colocar delante de otros elementos */
+        left: 0;
+        top: 0;
+        width: 100%; /* Ancho completo */
+        height: 100%; /* Alto completo */
+        overflow: auto; /* Habilitar scroll si es necesario */
+        background-color: rgb(0, 0, 0); /* Color de fondo negro */
+        background-color: rgba(0, 0, 0, 0.4); /* Fondo con opacidad */
+        display: flex; /* Usar flexbox para centrar */
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: center; /* Centrar verticalmente */
+      }
+
+      /* Contenido del modal */
+      .modal-content {
+        background-color: #fefefe;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px; /* Ancho máximo */
+        border-radius: 10px;
+        position: relative;
+      }
+
+      /* Botón de cierre */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Botón para abrir el modal -->
+    <button id="openModalBtn">Abrir Modal</button>
+
+    <!-- El Modal -->
+    <div id="myModal" class="modal">
+      <!-- Contenido del Modal -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Este es el contenido de la ventana modal.</p>
+      </div>
+    </div>
+
+    <script>
+      // script.js
+
+      // Obtener elementos del DOM
+      const modal = document.getElementById("myModal");
+      const openModalBtn = document.getElementById("openModalBtn");
+      const closeModalBtn = document.getElementsByClassName("close")[0];
+
+      // Abrir el modal
+      openModalBtn.onclick = function () {
+        modal.style.display = "flex";
+      };
+
+      // Cerrar el modal al hacer clic en el botón de cierre
+      closeModalBtn.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      // Cerrar el modal al hacer clic fuera del contenido del modal
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>

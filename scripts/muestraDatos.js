@@ -92,3 +92,34 @@ function truncarTexto(texto, longitudMaxima) {
     return texto;
   }
 }
+
+function addCarrito() {
+  let cookie = document.cookie.split(";");
+  let usuario = cookie[0].split("=");
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    console.log(this.readyState + ":" + this.status);
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText == "200") {
+        const modal = document.getElementById("myModal");
+        const closeModalBtn = document.getElementsByClassName("close")[0];
+        modal.style.visibility = "visible";
+        closeModalBtn.onclick = function () {
+          modal.style.visibility = "hidden";
+        };
+
+        // Cerrar el modal al hacer clic fuera del contenido del modal
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.style.visibility = "hidden";
+          }
+        };
+      }
+    }
+  };
+  xhttp.open("POST", "../gestion/gestionCarrito.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(
+    "funcion=insertar&videojuegoID=" + videojuegoID + "&usuario=" + usuario[1]
+  );
+}

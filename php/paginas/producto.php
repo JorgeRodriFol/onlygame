@@ -33,10 +33,17 @@
       </div>
     </div>
     <div class="body">
+      <div id="myModal" class="modal">
+        <!-- Contenido del Modal -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Producto añadido.</p>
+        </div>
+      </div>
       <div class="juego">
         <div class="portada">
           <img src="../img/ZeldaTOTK.png" alt="portada" id="portada" />
-          <button type="button" class="addCarrito">
+          <button type="button" class="addCarrito" onclick="addCarrito()">
             Añadir al carrito
             <img src="../../img/assets/anadir-a-la-cesta.png" alt="" />
           </button>
