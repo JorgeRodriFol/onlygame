@@ -6,13 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <link rel="stylesheet" href="../../style/carritoStyle.css" />
+  <script src="../../scripts/gestionCarro.js" defer></script>
+  <script src="../../scripts/gestionUsuarios.js" defer></script>
 </head>
 
 <body>
   <div class="parent">
     <div class="menuTop">
       <a class="mainPage" href="./index.php" tabindex="1">
-        <img src="../img/OnlyGamesLogo.png" alt="Pagina principal" />
+        <img src="../../img/assets/OnlyGamesLogo.png" alt="Pagina principal" />
       </a>
       <div class="breadcrumb">
         <a href="./index.php" tabindex="2">Inicio</a> &gt;
@@ -27,22 +29,7 @@
     <div class="body">
       <div class="productos">
 
-        <div class="producto" tabindex="6">
-          <img class="portada" src="../../img/portadas/ZeldaTOTK.png" alt="" />
-          <div class="informacion">
-            <h1>ZELDA TEARS OF THE KINGDOM</h1>
-            <h2>Categorias: ROL, Aventura...</h2>
-          </div>
-          <h2 class="precio">60.00€</h2>
-        </div>
-        <div class="producto" tabindex="6">
-          <img class="portada" src="../../img/portadas/ZeldaTOTK.png" alt="" />
-          <div class="informacion">
-            <h1>ZELDA TEARS OF THE KINGDOM</h1>
-            <h2>Categorias: ROL, Aventura...</h2>
-          </div>
-          <h2 class="precio">60.00€</h2>
-        </div>
+
       </div>
       <div class="total" tabindex="7">
         <h1>PRODUCTOS: XX</h1>
