@@ -7,8 +7,24 @@ if (window.location.pathname != "/onlygame/php/paginas/login.php")
       "src",
       "../../img/usuarios/" + document.cookie.substring(length + 49)
     );
-    img.style.height = "50px";
     usuario.appendChild(img);
+    let desplegable = document.createElement("div");
+    desplegable.className = "desplegable";
+    let user = document.createElement("a");
+    user.setAttribute("href", "./usuario.php");
+    user.text = "Mi Cuenta";
+    desplegable.appendChild(user);
+    let logOut = document.createElement("a");
+    logOut.addEventListener("click", function () {
+      document.cookie =
+        "nombreCliente=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie =
+        "imgCliente=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      window.location.reload();
+    });
+    logOut.text = "Log Out";
+    desplegable.appendChild(logOut);
+    usuario.appendChild(desplegable);
   } else {
     let usuario = document.querySelector(".log_in");
     usuario.innerHTML = "";

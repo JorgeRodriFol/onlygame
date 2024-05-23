@@ -3,96 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ventana Modal</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Menú Desplegable</title>
     <style>
-      /* styles.css */
-
-      /* Estilos para el modal */
-      .modal {
-        display: none; /* Ocultar por defecto */
-        position: fixed; /* Fijar posición en pantalla */
-        z-index: 1; /* Colocar delante de otros elementos */
-        left: 0;
-        top: 0;
-        width: 100%; /* Ancho completo */
-        height: 100%; /* Alto completo */
-        overflow: auto; /* Habilitar scroll si es necesario */
-        background-color: rgb(0, 0, 0); /* Color de fondo negro */
-        background-color: rgba(0, 0, 0, 0.4); /* Fondo con opacidad */
-        display: flex; /* Usar flexbox para centrar */
-        justify-content: center; /* Centrar horizontalmente */
-        align-items: center; /* Centrar verticalmente */
+      body {
+        font-family: Arial, sans-serif;
       }
 
-      /* Contenido del modal */
-      .modal-content {
-        background-color: #fefefe;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 500px; /* Ancho máximo */
-        border-radius: 10px;
-        position: relative;
+      nav {
+        background-color: #333;
+        overflow: hidden;
       }
 
-      /* Botón de cierre */
-      .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        cursor: pointer;
+      .menu {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
       }
 
-      .close:hover,
-      .close:focus {
-        color: black;
+      .menu > li {
+        float: left;
+      }
+
+      .menu > li > a,
+      .dropbtn {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
         text-decoration: none;
-        cursor: pointer;
+      }
+
+      .menu > li > a:hover,
+      .dropdown:hover .dropbtn {
+        background-color: #111;
+      }
+
+      .dropdown {
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #f1f1f1;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
       }
     </style>
   </head>
   <body>
-    <!-- Botón para abrir el modal -->
-    <button id="openModalBtn">Abrir Modal</button>
-
-    <!-- El Modal -->
-    <div id="myModal" class="modal">
-      <!-- Contenido del Modal -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>Este es el contenido de la ventana modal.</p>
-      </div>
-    </div>
-
+    <nav>
+      <ul class="menu">
+        <li><a href="#">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Servicios</a>
+          <div class="dropdown-content">
+            <a href="#">Servicio 1</a>
+            <a href="#">Servicio 2</a>
+            <a href="#">Servicio 3</a>
+          </div>
+        </li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
     <script>
-      // script.js
+      // No se necesita JavaScript para la funcionalidad básica basada en hover
+      // Pero aquí hay un ejemplo para abrir el menú con un clic
 
-      // Obtener elementos del DOM
-      const modal = document.getElementById("myModal");
-      const openModalBtn = document.getElementById("openModalBtn");
-      const closeModalBtn = document.getElementsByClassName("close")[0];
+      document.addEventListener("DOMContentLoaded", function () {
+        const dropbtn = document.querySelector(".dropbtn");
+        const dropdownContent = document.querySelector(".dropdown-content");
 
-      // Abrir el modal
-      openModalBtn.onclick = function () {
-        modal.style.display = "flex";
-      };
+        dropbtn.addEventListener("click", function (event) {
+          event.preventDefault();
+          dropdownContent.style.display =
+            dropdownContent.style.display === "block" ? "none" : "block";
+        });
 
-      // Cerrar el modal al hacer clic en el botón de cierre
-      closeModalBtn.onclick = function () {
-        modal.style.display = "none";
-      };
-
-      // Cerrar el modal al hacer clic fuera del contenido del modal
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      };
+        // Cierra el menú si se hace clic fuera de él
+        window.addEventListener("click", function (event) {
+          if (!event.target.matches(".dropbtn")) {
+            dropdownContent.style.display = "none";
+          }
+        });
+      });
     </script>
   </body>
 </html>
