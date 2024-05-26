@@ -1,4 +1,7 @@
-if (window.location.pathname != "/onlygame/php/paginas/login.php")
+if (
+  window.location.pathname != "/onlygame/php/paginas/login.php" ||
+  window.location.pathname != "/onlygame/php/paginas/usuario.php"
+) {
   if (document.cookie.includes("nombreCliente")) {
     let usuario = document.querySelector(".log_in");
     usuario.innerHTML = "";
@@ -35,6 +38,8 @@ if (window.location.pathname != "/onlygame/php/paginas/login.php")
     enlace.appendChild(texto);
     usuario.appendChild(enlace);
   }
+} else if (window.location.pathname == "/onlygame/php/paginas/usuario.php") {
+}
 
 function registrar() {
   if (
@@ -74,7 +79,8 @@ function login() {
       console.log(resultado);
       if (resultado != "404") {
         console.log(resultado);
-        document.cookie = "nombreCliente=" + resultado["correo"];
+        document.cookie = "nombreCliente=" + resultado["nombre"];
+        document.cookie = "correoCliente=" + resultado["correo"];
         document.cookie = "imgCliente=" + resultado["imagen"];
         window.location.href = "index.php";
       } else {

@@ -27,6 +27,17 @@
             </div>
             <a class="carrito" href="./carrito.php"><img src="../../img/assets/carrito-de-compras.png" alt="carrito" /></a>
         </div>
+        <div class="body">
+            <div class="usuario">
+                <img src="../../img/usuarios/sin_img.png" alt="">
+                <div class="datos">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre">
+                    <label for="correo">Correo</label>
+                    <input type="text" name="correo" id="correo">
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
