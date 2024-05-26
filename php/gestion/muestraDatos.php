@@ -6,18 +6,13 @@ $consulta = "SELECT
     v.precio, 
     v.imagen,
     v.descripcion,
-    GROUP_CONCAT(DISTINCT c.nombre_categoria SEPARATOR ', ') AS categorias, 
-    GROUP_CONCAT(DISTINCT p.nombre_plataforma SEPARATOR ', ') AS plataformas 
+    GROUP_CONCAT(DISTINCT c.nombre_categoria SEPARATOR ', ') AS categorias
 FROM 
     videojuegos v 
 JOIN 
     videojuegos_categorias vc ON v.id_videojuego = vc.id_videojuego 
 JOIN 
     categorias c ON vc.id_categoria = c.id_categoria 
-JOIN 
-    videojuegos_pataformas vp ON v.id_videojuego = vp.id_videojuego 
-JOIN 
-    plataformas p ON vp.id_plataforma = p.id_plataforma 
 WHERE 
     v.id_videojuego = $videojuegoID
 GROUP BY 

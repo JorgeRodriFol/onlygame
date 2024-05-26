@@ -67,12 +67,9 @@ function mostrarvideojuegos(videojuegos) {
     let categorias = document.createElement("p");
     categorias.textContent = truncarTexto(
       "Categorias: " + videojuegos[i]["categorias"],
-      26
+      50
     );
     info.appendChild(categorias);
-    let plataformas = document.createElement("p");
-    plataformas.textContent = truncarTexto(videojuegos[i]["plataformas"], 10);
-    info.appendChild(plataformas);
     enlace.appendChild(info);
     tarjeta.appendChild(enlace);
     body.appendChild(tarjeta);

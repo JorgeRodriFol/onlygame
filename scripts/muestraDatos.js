@@ -31,8 +31,6 @@ function mostrardatos(datos) {
   document.getElementById("precio").textContent = datos["precio"] + "€";
   document.getElementById("categorias").textContent =
     "Categorias: " + datos["categorias"];
-  document.getElementById("plataformas").textContent =
-    "Plataformas: " + datos["plataformas"];
   document.querySelector(".descripcion p").textContent = datos["descripcion"];
 }
 

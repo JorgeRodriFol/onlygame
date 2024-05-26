@@ -35,27 +35,6 @@
       </div>
     </div>
     <div class="menuLeft">
-      <div class="plataformas">
-        <ul>
-          <p><strong>Plataformas</strong></p>
-          <li>
-            <input type="checkbox" name="plataforma" id="switch" />
-            <label for="switch">Switch</label>
-          </li>
-          <li>
-            <input type="checkbox" name="plataforma" id="ps5" />
-            <label for="ps5">PS5</label>
-          </li>
-          <li>
-            <input type="checkbox" name="plataforma" id="ps4" />
-            <label for="ps4">PS4</label>
-          </li>
-          <li>
-            <input type="checkbox" name="plataforma" id="xboxone" />
-            <label for="xboxone">Xbox One</label>
-          </li>
-        </ul>
-      </div>
       <div class="genero">
         <ul>
           <p><strong>Género</strong></p>
