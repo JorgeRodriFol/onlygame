@@ -1,4 +1,6 @@
 llamarAJAX();
+var precioTotal = 0;
+var numTotal = 0;
 
 function llamarAJAX() {
   let cookie = document.cookie.split(";");
@@ -38,15 +40,12 @@ function mostrarCarro(respuesta) {
     precio.className = "precio";
     precio.textContent = carro[i]["precio"] + "€";
     producto.appendChild(precio);
+    precioTotal += parseFloat(carro[i]["precio"]);
     productos.appendChild(producto);
   }
+  numTotal = carro.length;
+  document.querySelector(".numproductos").textContent =
+    "PRODUCTOS: " + numTotal;
+  document.querySelector(".preciaTotal").textContent =
+    "TOTAL: " + precioTotal.toFixed(2) + "€";
 }
-
-/*<div class="producto" tabindex="6">
-  <img class="portada" src="../../img/portadas/ZeldaTOTK.png" alt="" />
-  <div class="informacion">
-    <h1>ZELDA TEARS OF THE KINGDOM</h1>
-    <h2>Categorias: ROL, Aventura...</h2>
-  </div>
-  <h2 class="precio">60.00€</h2>
-</div>;*/
