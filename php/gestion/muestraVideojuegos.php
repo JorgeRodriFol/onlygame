@@ -29,8 +29,11 @@ GROUP BY
     } else {
         echo "No se encontraron registros en la base de datos.";
     }
-} else if ($_POST['filtros']) {
-    $filtros = $_POST['filtros'];
+} else if (isset($_POST['filtros'])) {
+    $filtros = explode(",", $_POST['filtros']);
+    $placeholders = rtrim(str_repeat('?,', count($filtros)), ',');
+    for ($i = 0; $i < sizeof($filtros); $i++) {
+    }
     $consulta = "SELECT 
     v.id_videojuego,
     v.titulo, 
@@ -44,9 +47,18 @@ JOIN
 JOIN 
     categorias c ON vc.id_categoria = c.id_categoria
 WHERE 
-    c.nombre_categoria LIKE '%$filtros%' 
-GROUP BY 
+    ";
+    for ($i = 0; $i < count($filtros); $i++) {
+        $consulta .= "c.nombre_categoria = '" . $filtros[$i] . "' ";
+        if ($i < count($filtros) - 1) {
+            $consulta .= "OR ";
+        }
+    }
+    $consulta .= "GROUP BY 
     v.id_videojuego;";
+
+
+    // Obtener resultados
     $result = $con->query($consulta);
 
     if ($result->num_rows > 0) {
@@ -55,7 +67,7 @@ GROUP BY
         guardarElementos($registros, $result);
         echo json_encode($registros);
     } else {
-        echo "No se encontraron registros en la base de datos.";
+        echo json_encode("No se encontraron registros en la base de datos.");
     }
 }
 

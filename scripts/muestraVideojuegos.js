@@ -7,13 +7,24 @@ busqueda.addEventListener("input", function () {
 });
 
 var filtro = document.querySelectorAll(".genero input");
+var listaFiltro = [];
+filtro.forEach((input) => {
+  listaFiltro.push(input.value);
+});
 for (let i = 0; i < filtro.length; i++) {
   filtro[i].addEventListener("change", function () {
-    if (filtro[i].checked) {
-      console.log(filtro[i].value);
-      llamarAJAX("filtrar", filtro[i].value);
+    let categorias = [];
+    let contador = 0;
+    for (let j = 0; j < filtro.length; j++) {
+      if (filtro[j].checked) {
+        contador++;
+        categorias.push(filtro[j].value);
+      }
+    }
+    if (contador == 0) {
+      llamarAJAX("filtrar", listaFiltro);
     } else {
-      llamarAJAX("filtrar", "");
+      llamarAJAX("filtrar", categorias);
     }
   });
 }
@@ -35,44 +46,56 @@ function llamarAJAX(accion, input) {
 
 function mostrarvideojuegos(videojuegos) {
   let body = document.querySelector(".body");
-  console.log(videojuegos);
   videojuegos = JSON.parse(videojuegos);
   body.innerHTML = "";
-  for (let i = 0; i < videojuegos.length; i++) {
-    let tarjeta = document.createElement("div");
-    tarjeta.className = "tarjeta";
-    let enlace = document.createElement("a");
-    console.log(videojuegos[i]["id_videojuego"]);
-    enlace.addEventListener("click", function (event) {
-      event.preventDefault();
-      let parametros = new URLSearchParams();
-      parametros.append("videojuegoID", videojuegos[i]["id_videojuego"]);
-      let url = "./producto.php?" + parametros.toString();
-      window.location.href = url;
-    });
-    let imagen = document.createElement("img");
-    imagen.setAttribute(
-      "src",
-      "../../img/portadas/" + videojuegos[i]["imagen"]
-    );
-    enlace.appendChild(imagen);
-    let info = document.createElement("div");
-    info.className = "info";
-    let titulo = document.createElement("h4");
-    titulo.textContent = videojuegos[i]["titulo"];
-    info.appendChild(titulo);
-    let precio = document.createElement("h4");
-    precio.textContent = videojuegos[i]["precio"] + "€";
-    info.appendChild(precio);
-    let categorias = document.createElement("p");
-    categorias.textContent = truncarTexto(
-      "Categorias: " + videojuegos[i]["categorias"],
-      50
-    );
-    info.appendChild(categorias);
-    enlace.appendChild(info);
-    tarjeta.appendChild(enlace);
-    body.appendChild(tarjeta);
+  if (videojuegos == "No se encontraron registros en la base de datos.") {
+    body.style.display = "flex";
+    body.style.justifyContent = "center";
+    body.style.alignItems = "center";
+    body.style.paddingLeft = "0";
+    let mensaje = document.createElement("h1");
+    mensaje.className = "mensajeNF";
+    mensaje.textContent = "No existen juegos con las categorias indicadas";
+    body.appendChild(mensaje);
+  } else {
+    body.style.display = "block";
+    body.style.paddingLeft = "7.5%";
+    for (let i = 0; i < videojuegos.length; i++) {
+      let tarjeta = document.createElement("div");
+      tarjeta.className = "tarjeta";
+      let enlace = document.createElement("a");
+      console.log(videojuegos[i]["id_videojuego"]);
+      enlace.addEventListener("click", function (event) {
+        event.preventDefault();
+        let parametros = new URLSearchParams();
+        parametros.append("videojuegoID", videojuegos[i]["id_videojuego"]);
+        let url = "./producto.php?" + parametros.toString();
+        window.location.href = url;
+      });
+      let imagen = document.createElement("img");
+      imagen.setAttribute(
+        "src",
+        "../../img/portadas/" + videojuegos[i]["imagen"]
+      );
+      enlace.appendChild(imagen);
+      let info = document.createElement("div");
+      info.className = "info";
+      let titulo = document.createElement("h4");
+      titulo.textContent = videojuegos[i]["titulo"];
+      info.appendChild(titulo);
+      let precio = document.createElement("h4");
+      precio.textContent = videojuegos[i]["precio"] + "€";
+      info.appendChild(precio);
+      let categorias = document.createElement("p");
+      categorias.textContent = truncarTexto(
+        "Categorias: " + videojuegos[i]["categorias"],
+        50
+      );
+      info.appendChild(categorias);
+      enlace.appendChild(info);
+      tarjeta.appendChild(enlace);
+      body.appendChild(tarjeta);
+    }
   }
 }
 

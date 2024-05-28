@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <link rel="stylesheet" href="../../style/productoStyle.css" />
-  <script src="../../scripts/muestraDatos.js"></script>
+  <script src="../../scripts/muestraDatos.js" defer></script>
+  <script src="../../scripts/gestionUsuarios.js" defer></script>
 </head>
 
 <body>

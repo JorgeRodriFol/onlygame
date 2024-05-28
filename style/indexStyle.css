@@ -197,7 +197,12 @@ label {
   background-attachment: fixed;
   max-height: 100vh;
   overflow-y: auto;
-  padding-left: 7.5%;
+}
+
+.mensajeNF {
+  background-color: rgba(94, 18, 107, 0.75);
+  font-size: 7.5vh;
+  padding: 2.5vw;
 }
 
 .body > h1,
