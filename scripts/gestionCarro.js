@@ -2,6 +2,10 @@ llamarAJAX();
 var precioTotal = 0;
 var numTotal = 0;
 
+document.getElementById("comprar").addEventListener("click", function () {
+  comprar();
+});
+
 function llamarAJAX() {
   let cookie = document.cookie.split(";");
   let usuario = cookie[0].split("=");
@@ -48,4 +52,20 @@ function mostrarCarro(respuesta) {
     "PRODUCTOS: " + numTotal;
   document.querySelector(".preciaTotal").textContent =
     "TOTAL: " + precioTotal.toFixed(2) + "€";
+}
+
+function comprar() {
+  console.log("Comprando");
+  let cookie = document.cookie.split(";");
+  let usuario = cookie[1].split("=");
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    console.log(this.readyState + ":" + this.status);
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+    }
+  };
+  xhttp.open("POST", "../gestion/gestionCarrito.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("funcion=comprar&usuario=" + usuario[1]);
 }

@@ -39,6 +39,11 @@ if (
     usuario.appendChild(enlace);
   }
 } else if (window.location.pathname == "/onlygame/php/paginas/usuario.php") {
+  let cookie = document.cookie.split(";");
+  let nombre = cookie[0].split("=")[1];
+  let correo = cookie[1].split("=")[1];
+  document.getElementById("nombre").value = nombre;
+  document.getElementById("correo").value = correo;
 }
 
 function registrar() {

@@ -34,7 +34,7 @@
       <div class="total" tabindex="7">
         <h1 class="numproductos">PRODUCTOS: XX</h1>
         <h1 class="preciaTotal">TOTAL: XX.XX€</h1>
-        <button>Comprar</button>
+        <button id="comprar">Comprar</button>
       </div>
     </div>
   </div>
