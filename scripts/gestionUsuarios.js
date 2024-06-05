@@ -100,3 +100,13 @@ function login() {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send("login=" + texto);
 }
+
+function logout() {
+  document.cookie =
+    "nombreCliente=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie =
+    "correoCliente=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie =
+    "imgCliente=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  window.location.href = "./index.php";
+}

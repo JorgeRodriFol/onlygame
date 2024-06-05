@@ -78,7 +78,7 @@ body {
   background: #f3f2f2;
 }
 
-button {
+.menuTop button {
   border-radius: 50px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -142,4 +142,10 @@ button:hover {
   border: none;
   border-bottom: 1px solid #09f;
   text-align: center;
+}
+
+.logout {
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 20px;
 }

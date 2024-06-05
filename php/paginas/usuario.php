@@ -35,6 +35,7 @@
                     <input type="text" name="nombre" id="nombre">
                     <label for="correo">Correo</label>
                     <input type="text" name="correo" id="correo">
+                    <button class="logout" onclick="logout()">LOG OUT</button>
                 </div>
             </div>
         </div>
