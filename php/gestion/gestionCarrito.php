@@ -22,6 +22,7 @@ if ($funcion == 'insertar') {
 } else if ($funcion == 'mostrar') {
     $usuario = $_POST['usuario'];
     $consulta = "SELECT 
+    ca.id_videojuego,
     v.titulo, 
     v.precio, 
     v.imagen,
@@ -90,6 +91,17 @@ GROUP BY
         }
     } else {
         echo json_encode("No se encontro el videojuego");
+    }
+} else if ($funcion == 'borrar') {
+    $usuario = $_POST['usuario'];
+    $videojuego = $_POST['videojuego'];
+
+    $delete = "DELETE FROM Carrito WHERE usuario = '$usuario' AND id_videojuego = $videojuego";
+    $result = $con->query($delete);
+    if ($result) {
+        echo "Producto eliminado";
+    } else {
+        echo "Error al borrar";
     }
 }
 

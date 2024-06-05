@@ -2,108 +2,159 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menú Desplegable</title>
+    <title>Paginación con Animación en JavaScript</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
-
-      nav {
-        background-color: #333;
+      #content {
         overflow: hidden;
+        position: relative;
+        width: 300px; /* Ajusta según tus necesidades */
+        height: 200px; /* Ajusta según tus necesidades */
+        white-space: nowrap;
       }
-
-      .menu {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      .menu > li {
-        float: left;
-      }
-
-      .menu > li > a,
-      .dropbtn {
+      .page {
         display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease;
       }
-
-      .menu > li > a:hover,
-      .dropdown:hover .dropbtn {
-        background-color: #111;
-      }
-
-      .dropdown {
-        display: inline-block;
-      }
-
-      .dropdown-content {
+      .hidden {
         display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
       }
-
-      .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
+      .pagination {
+        display: flex;
+        list-style-type: none;
+        justify-content: center;
+        margin-top: 10px;
       }
-
-      .dropdown-content a:hover {
-        background-color: #f1f1f1;
+      .pagination li {
+        margin: 0 5px;
+        cursor: pointer;
       }
-
-      .dropdown:hover .dropdown-content {
-        display: block;
+      .pagination li.active {
+        font-weight: bold;
+      }
+      #controls {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      #controls button {
+        margin: 0 5px;
       }
     </style>
   </head>
   <body>
-    <nav>
-      <ul class="menu">
-        <li><a href="#">Inicio</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropbtn">Servicios</a>
-          <div class="dropdown-content">
-            <a href="#">Servicio 1</a>
-            <a href="#">Servicio 2</a>
-            <a href="#">Servicio 3</a>
-          </div>
-        </li>
-        <li><a href="#">Contacto</a></li>
-      </ul>
-    </nav>
+    <div id="content"></div>
+    <div id="controls">
+      <button id="prev">Anterior</button>
+      <button id="next">Siguiente</button>
+    </div>
+    <ul class="pagination" id="pagination"></ul>
+
     <script>
-      // No se necesita JavaScript para la funcionalidad básica basada en hover
-      // Pero aquí hay un ejemplo para abrir el menú con un clic
+      // Ejemplo de array grande
+      const items = Array.from({ length: 100 }, (_, i) => `Item ${i + 1}`);
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const dropbtn = document.querySelector(".dropbtn");
-        const dropdownContent = document.querySelector(".dropdown-content");
+      // Parámetros de paginación
+      const itemsPerPage = 10;
+      let currentPage = 1;
 
-        dropbtn.addEventListener("click", function (event) {
-          event.preventDefault();
-          dropdownContent.style.display =
-            dropdownContent.style.display === "block" ? "none" : "block";
+      // Función para obtener los elementos de la página actual
+      function getPaginatedItems(page) {
+        const start = (page - 1) * itemsPerPage;
+        const end = page * itemsPerPage;
+        return items.slice(start, end);
+      }
+
+      // Función para renderizar los elementos en el HTML
+      function renderItems(items) {
+        const contentDiv = document.getElementById("content");
+        contentDiv.innerHTML = ""; // Limpiar contenido previo
+
+        items.forEach((item) => {
+          const pageDiv = document.createElement("div");
+          pageDiv.className = "page";
+          pageDiv.innerHTML = `<p>${item}</p>`;
+          contentDiv.appendChild(pageDiv);
         });
+      }
 
-        // Cierra el menú si se hace clic fuera de él
-        window.addEventListener("click", function (event) {
-          if (!event.target.matches(".dropbtn")) {
-            dropdownContent.style.display = "none";
+      // Función para renderizar la paginación
+      function renderPagination(totalItems, itemsPerPage) {
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        const paginationUl = document.getElementById("pagination");
+        paginationUl.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+          const li = document.createElement("li");
+          li.textContent = i;
+          li.addEventListener("click", () => {
+            goToPage(i);
+          });
+          paginationUl.appendChild(li);
+        }
+      }
+
+      // Función para actualizar la paginación y los elementos mostrados
+      function updatePagination() {
+        const paginatedItems = getPaginatedItems(currentPage);
+        renderItems(paginatedItems);
+        updateActivePage();
+        updateButtons();
+        slideToPage(currentPage);
+      }
+
+      // Función para resaltar la página activa
+      function updateActivePage() {
+        const paginationUl = document.getElementById("pagination");
+        const pages = paginationUl.querySelectorAll("li");
+        pages.forEach((page) => {
+          page.classList.remove("active");
+          if (parseInt(page.textContent) === currentPage) {
+            page.classList.add("active");
           }
         });
+      }
+
+      // Función para habilitar/deshabilitar los botones de navegación
+      function updateButtons() {
+        document.getElementById("prev").disabled = currentPage === 1;
+        document.getElementById("next").disabled =
+          currentPage === Math.ceil(items.length / itemsPerPage);
+      }
+
+      // Función para ir a una página específica
+      function goToPage(page) {
+        currentPage = page;
+        updatePagination();
+      }
+
+      // Función para deslizar hacia la página específica
+      function slideToPage(page) {
+        const contentDiv = document.getElementById("content");
+        const offset = (page - 1) * -100;
+        const pages = contentDiv.querySelectorAll(".page");
+        pages.forEach((page) => {
+          page.style.transform = `translateX(${offset}%)`;
+        });
+      }
+
+      // Eventos de los botones
+      document.getElementById("prev").addEventListener("click", () => {
+        if (currentPage > 1) {
+          goToPage(currentPage - 1);
+        }
       });
+
+      document.getElementById("next").addEventListener("click", () => {
+        if (currentPage < Math.ceil(items.length / itemsPerPage)) {
+          goToPage(currentPage + 1);
+        }
+      });
+
+      // Inicializar la paginación
+      renderPagination(items.length, itemsPerPage);
+      updatePagination();
     </script>
   </body>
 </html>

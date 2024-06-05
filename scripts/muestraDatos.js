@@ -3,6 +3,7 @@ var urlObj = new URL(urlActual);
 var params = urlObj.searchParams;
 var videojuegoID = params.get("videojuegoID");
 llamarAJAXDatos(videojuegoID);
+llamarAJAXSaga(videojuegoID);
 llamarAJAXRelacionados(videojuegoID);
 
 function llamarAJAXDatos(videojuegoID) {
@@ -34,6 +35,21 @@ function mostrardatos(datos) {
   document.querySelector(".descripcion p").textContent = datos["descripcion"];
 }
 
+function llamarAJAXSaga(videojuegoID) {
+  //Recogida de datos en un array
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    console.log(this.readyState + ":" + this.status);
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      mostrarsaga(this.responseText);
+    }
+  };
+  xhttp.open("POST", "../gestion/muestraSaga.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("videojuegoID=" + videojuegoID);
+}
+
 function llamarAJAXRelacionados(videojuegoID) {
   //Recogida de datos en un array
   let xhttp = new XMLHttpRequest();
@@ -50,6 +66,40 @@ function llamarAJAXRelacionados(videojuegoID) {
 }
 
 function mostrarrelacion(relacionados) {
+  let body = document.querySelector(".similares");
+  relacionados = JSON.parse(relacionados);
+  console.log(relacionados);
+  body.innerHTML = "";
+  for (let i = 0; i < relacionados.length; i++) {
+    let tarjeta = document.createElement("div");
+    tarjeta.className = "tarjeta";
+    let enlace = document.createElement("a");
+    console.log(relacionados[i]["id_videojuego"]);
+    enlace.addEventListener("click", function (event) {
+      event.preventDefault();
+      let parametros = new URLSearchParams();
+      parametros.append("videojuegoID", relacionados[i]["id_videojuego"]);
+      let url = "./producto.php?" + parametros.toString();
+      window.location.href = url;
+    });
+    let imagen = document.createElement("img");
+    imagen.setAttribute(
+      "src",
+      "../../img/portadas/" + relacionados[i]["imagen"]
+    );
+    enlace.appendChild(imagen);
+    let info = document.createElement("div");
+    info.className = "info";
+    let titulo = document.createElement("h4");
+    titulo.textContent = relacionados[i]["titulo"];
+    info.appendChild(titulo);
+    enlace.appendChild(info);
+    tarjeta.appendChild(enlace);
+    body.appendChild(tarjeta);
+  }
+}
+
+function mostrarsaga(relacionados) {
   let body = document.querySelector(".saga");
   relacionados = JSON.parse(relacionados);
   console.log(relacionados);
@@ -93,7 +143,7 @@ function truncarTexto(texto, longitudMaxima) {
 
 function addCarrito() {
   let cookie = document.cookie.split(";");
-  let usuario = cookie[0].split("=");
+  let usuario = cookie[1].split("=");
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     console.log(this.readyState + ":" + this.status);

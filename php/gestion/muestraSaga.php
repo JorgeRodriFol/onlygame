@@ -17,8 +17,7 @@ v.id_videojuego
 ";
 
 $result = $con->query($consulta);
-$relacion = $filtros = explode(",", mysqli_fetch_array($result)[1]);
-
+$relacion = mysqli_fetch_array($result);
 
 
 $consulta = "SELECT 
@@ -34,15 +33,11 @@ JOIN
 JOIN 
     categorias c ON vc.id_categoria = c.id_categoria
 WHERE 
-    ";
-for ($i = 0; $i < count($relacion); $i++) {
-    $consulta .= "c.nombre_categoria = '" . $relacion[$i] . "' ";
-    if ($i < count($relacion) - 1) {
-        $consulta .= "OR ";
-    }
-}
-$consulta .= "GROUP BY 
-    v.id_videojuego;";
+    v.saga LIKE '" . $relacion[0] . "'
+GROUP BY 
+    v.id_videojuego;
+";
+
 $result = $con->query($consulta);
 
 $registros = array();
