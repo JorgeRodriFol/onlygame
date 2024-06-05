@@ -18,11 +18,7 @@ if (
     desplegable.appendChild(user);
     let logOut = document.createElement("a");
     logOut.addEventListener("click", function () {
-      document.cookie =
-        "nombreCliente=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
-        "imgCliente=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      window.location.reload();
+      logout();
     });
     logOut.text = "Log Out";
     desplegable.appendChild(logOut);
@@ -102,11 +98,14 @@ function login() {
 }
 
 function logout() {
-  document.cookie =
-    "nombreCliente=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  document.cookie =
-    "correoCliente=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  document.cookie =
-    "imgCliente=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  const cookies = document.cookie.split(";");
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i];
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie =
+      name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  }
   window.location.href = "./index.php";
 }

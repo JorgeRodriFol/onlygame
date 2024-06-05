@@ -64,14 +64,11 @@ GROUP BY
         $registros = array();
         guardarElementos($registros, $result);
         $fecha = date("Y-m-d");
-        $sql = "INSERT INTO compras (fecha, usuario) VALUES (?, ?)";
+        $sql = "INSERT INTO compras (fecha_compra, usuario) VALUES ($fecha, '$usuario')";
+        print_r($sql);
 
         // Preparar la declaración
-        $statement = $con->prepare($sql);
-
-        // Vincular los parámetros con los valores
-        $statement->bind_param("ds", $fecha, $usuario);
-        if ($statement->execute()) {
+        if ($con->query($sql) === TRUE) {
             $ultimo_id = $mysqli->insert_id;
             for ($i = 0; $i < sizeof($registros); $i++) {
                 $sql = "INSERT INTO compras_videojuegos (id_compra, id_videojuego) VALUES (?, ?)";
