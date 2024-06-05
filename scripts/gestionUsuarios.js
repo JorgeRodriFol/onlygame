@@ -3,13 +3,12 @@ if (
   window.location.pathname != "/onlygame/php/paginas/usuario.php"
 ) {
   if (document.cookie.includes("nombreCliente")) {
+    let cookie = document.cookie.split(";");
+    let imagen = cookie[2].split("=");
     let usuario = document.querySelector(".log_in");
     usuario.innerHTML = "";
     let img = document.createElement("img");
-    img.setAttribute(
-      "src",
-      "../../img/usuarios/" + document.cookie.substring(length + 49)
-    );
+    img.setAttribute("src", "../../img/usuarios/" + imagen[1]);
     usuario.appendChild(img);
     let desplegable = document.createElement("div");
     desplegable.className = "desplegable";
