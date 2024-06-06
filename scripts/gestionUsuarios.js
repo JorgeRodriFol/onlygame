@@ -1,9 +1,9 @@
 if (
-  window.location.pathname != "/onlygame/php/paginas/login.php" ||
+  window.location.pathname != "/onlygame/php/paginas/login.php" &&
   window.location.pathname != "/onlygame/php/paginas/usuario.php"
 ) {
   if (document.cookie.includes("nombreCliente")) {
-    let cookie = document.cookie.split(";");
+    let cookie = document.cookie.split("; ");
     let imagen = cookie[2].split("=");
     let usuario = document.querySelector(".log_in");
     usuario.innerHTML = "";
@@ -34,7 +34,7 @@ if (
     usuario.appendChild(enlace);
   }
 } else if (window.location.pathname == "/onlygame/php/paginas/usuario.php") {
-  let cookie = document.cookie.split(";");
+  let cookie = document.cookie.split("; ");
   let nombre = cookie[0].split("=")[1];
   let correo = cookie[1].split("=")[1];
   document.getElementById("nombre").value = nombre;
@@ -98,14 +98,13 @@ function login() {
 }
 
 function logout() {
-  const cookies = document.cookie.split(";");
+  const cookies = document.cookie.split("; ");
 
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i];
-    const eqPos = cookie.indexOf("=");
-    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    const datos = cookie.split("=");
     document.cookie =
-      name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      datos[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   }
   window.location.href = "./index.php";
 }
