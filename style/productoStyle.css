@@ -188,8 +188,6 @@ button:hover {
   width: 100%; /* Ancho completo */
   height: 100%; /* Alto completo */
   overflow: auto; /* Habilitar scroll si es necesario */
-  background-color: rgb(0, 0, 0); /* Color de fondo negro */
-  background-color: rgba(0, 0, 0, 0.4); /* Fondo con opacidad */
   display: flex; /* Usar flexbox para centrar */
   justify-content: center; /* Centrar horizontalmente */
   align-items: center; /* Centrar verticalmente */

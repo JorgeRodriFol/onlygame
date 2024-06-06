@@ -63,13 +63,11 @@ GROUP BY
     if ($result->num_rows > 0) {
         $registros = array();
         guardarElementos($registros, $result);
-        $fecha = date("Y-m-d");
-        $sql = "INSERT INTO compras (fecha_compra, usuario) VALUES ($fecha, '$usuario')";
-        print_r($sql);
+        $sql = "INSERT INTO compras (usuario) VALUES ('$usuario')";
 
-        // Preparar la declaración
         if ($con->query($sql) === TRUE) {
-            $ultimo_id = $mysqli->insert_id;
+            $ultimo_id = $con->insert_id;
+            $insertado = 0;
             for ($i = 0; $i < sizeof($registros); $i++) {
                 $sql = "INSERT INTO compras_videojuegos (id_compra, id_videojuego) VALUES (?, ?)";
                 $statement = $con->prepare($sql);
@@ -78,6 +76,16 @@ GROUP BY
                 // Vincular los parámetros con los valores
                 $statement->bind_param("ii", $ultimo_id, $registros[$i]['id_videojuego']);
                 if ($statement->execute()) {
+
+                    $insertado++;
+                } else {
+                    echo "Error al insertar datos: " . $con->error;
+                }
+            }
+            if ($insertado == $result->num_rows){
+                $delete = "DELETE FROM Carrito WHERE usuario = '$usuario'";
+                $result = $con->query($delete);
+                if ($result) {
                     echo "200";
                 } else {
                     echo "Error al insertar datos: " . $con->error;

@@ -27,9 +27,14 @@
       </div>
     </div>
     <div class="body">
+      <div id="myModal" class="modal">
+        <!-- Contenido del Modal -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Compra realizada.</p>
+        </div>
+      </div>
       <div class="productos">
-
-
       </div>
       <div class="total" tabindex="7">
         <h1 class="numproductos">PRODUCTOS: XX</h1>

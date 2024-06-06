@@ -101,8 +101,7 @@ function logout() {
   const cookies = document.cookie.split("; ");
 
   for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i];
-    const datos = cookie.split("=");
+    const datos = cookies[i].split("=");
     document.cookie =
       datos[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   }

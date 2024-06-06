@@ -53,7 +53,6 @@
           <h1 id="titulo">ZELDA TEARS OF THE KINGDOM</h1>
           <h1 id="precio">60.00€</h1>
           <h4 id="categorias">Categorias: ROL, Aventuras, Fantasia</h4>
-          <h4 id="plataformas">Plataformas: Switch</h4>
           <h4>Descripcion</h4>
           <div class="descripcion">
             <p>

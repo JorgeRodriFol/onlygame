@@ -103,7 +103,23 @@ function comprar() {
   xhttp.onreadystatechange = function () {
     console.log(this.readyState + ":" + this.status);
     if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
+      console.log("Mensaje" + this.responseText);
+      if (this.responseText == "200") {
+        const modal = document.getElementById("myModal");
+        const closeModalBtn = document.getElementsByClassName("close")[0];
+        modal.style.visibility = "visible";
+        closeModalBtn.onclick = function () {
+          modal.style.visibility = "hidden";
+        };
+
+        // Cerrar el modal al hacer clic fuera del contenido del modal
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.style.visibility = "hidden";
+          }
+        };
+        llamarAJAX();
+      }
     }
   };
   xhttp.open("POST", "../gestion/gestionCarrito.php", true);
