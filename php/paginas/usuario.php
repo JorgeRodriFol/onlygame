@@ -29,13 +29,20 @@
         </div>
         <div class="body">
             <div class="usuario">
-                <img src="../../img/usuarios/sin_img.png" alt="">
+                <img src="../../img/usuarios/<?php
+                    echo $_COOKIE['imgCliente'];
+                    ?>" alt="">
                 <div class="datos">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre">
+                    <input type="text" name="nombre" id="nombre" value="<?php
+                    echo $_COOKIE['nombreCliente'];
+                    ?>">
                     <label for="correo">Correo</label>
-                    <input type="text" name="correo" id="correo">
-                    <button class="logout" onclick="logout()">LOG OUT</button>
+                    <input type="text" name="correo" id="correo" value="<?php
+                    echo $_COOKIE['correoCliente'];
+                    ?>">
+                    <button class="button" onclick="cambiar()">GUARDAR CAMBIOS</button>
+                    <button class="button" onclick="logout()">LOG OUT</button>
                 </div>
             </div>
         </div>

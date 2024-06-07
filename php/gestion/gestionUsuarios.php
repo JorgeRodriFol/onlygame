@@ -33,6 +33,17 @@ if (isset($_POST['registro'])) {
     } else {
         echo json_encode("404");
     }
+}else if(isset($_POST['cambiar'])){
+    $textos = explode("-", $_POST['cambiar']);
+    $update = "UPDATE usuarios SET nombre = '".$textos[0]."', correo = '".$textos[1]."'
+    WHERE correo = '".$textos[2]."';";
+    echo $update;
+    // Paso 3: Ejecutar la consulta SQL
+    if ($con->query($update) === TRUE) {
+        echo "200";
+    } else {
+        echo "Error al insertar datos: " . $con->error;
+    }
 }
 
 $con->close();

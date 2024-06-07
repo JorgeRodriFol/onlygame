@@ -4,11 +4,16 @@ if (
 ) {
   if (document.cookie.includes("nombreCliente")) {
     let cookie = document.cookie.split("; ");
-    let imagen = cookie[2].split("=");
+    let imagen;
+    for (let i = 0; i < 3; ++i) {
+      if (cookie[i].split("=")[0] == "imgCliente") {
+        imagen = cookie[i].split("=")[1];
+      }
+    }
     let usuario = document.querySelector(".log_in");
     usuario.innerHTML = "";
     let img = document.createElement("img");
-    img.setAttribute("src", "../../img/usuarios/" + imagen[1]);
+    img.setAttribute("src", "../../img/usuarios/" + imagen);
     usuario.appendChild(img);
     let desplegable = document.createElement("div");
     desplegable.className = "desplegable";
@@ -16,12 +21,6 @@ if (
     user.setAttribute("href", "./usuario.php");
     user.text = "Mi Cuenta";
     desplegable.appendChild(user);
-    let logOut = document.createElement("a");
-    logOut.addEventListener("click", function () {
-      logout();
-    });
-    logOut.text = "Log Out";
-    desplegable.appendChild(logOut);
     usuario.appendChild(desplegable);
   } else {
     let usuario = document.querySelector(".log_in");
@@ -33,12 +32,6 @@ if (
     enlace.appendChild(texto);
     usuario.appendChild(enlace);
   }
-} else if (window.location.pathname == "/onlygame/php/paginas/usuario.php") {
-  let cookie = document.cookie.split("; ");
-  let nombre = cookie[0].split("=")[1];
-  let correo = cookie[1].split("=")[1];
-  document.getElementById("nombre").value = nombre;
-  document.getElementById("correo").value = correo;
 }
 
 function registrar() {
@@ -98,12 +91,36 @@ function login() {
 }
 
 function logout() {
-  const cookies = document.cookie.split("; ");
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      window.location = "./index.php";
+    }
+  };
 
-  for (let i = 0; i < cookies.length; i++) {
-    const datos = cookies[i].split("=");
-    document.cookie =
-      datos[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  }
-  window.location.href = "./index.php";
+  xhttp.open("POST", "../gestion/logout.php", true);
+  xhttp.send();
+}
+
+function cambiar() {
+  let nombre = document.getElementById("nombre").value;
+  let correo = document.getElementById("correo").value;
+  let texto =
+    nombre + "-" + correo + "-" + document.cookie.split("; ")[1].split("=")[1];
+  console.log(texto);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.response);
+      if (this.response == "200") {
+        document.cookie = "nombreCliente=" + nombre;
+        document.cookie = "correoCliente=" + correo;
+        document.cookie = "imgCliente=sin_img.png";
+      }
+    }
+  };
+
+  xhttp.open("POST", "../gestion/gestionUsuarios.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("cambiar=" + texto);
 }
