@@ -6,6 +6,32 @@ llamarAJAXDatos(videojuegoID);
 llamarAJAXSaga(videojuegoID);
 llamarAJAXRelacionados(videojuegoID);
 
+let carrusel = document.querySelector(".similares");
+let varx = 0;
+let diferencia = carrusel.scrollWidth - carrusel.clientWidth;
+let left = document.getElementById("left");
+left.addEventListener("click", function () {
+  console.log("Pulsado");
+  scrollLeft();
+});
+let right = document.getElementById("right");
+right.addEventListener("click", function () {
+  console.log("Pulsado");
+  scrollRight();
+});
+document.querySelector(".arrows").appendChild(left);
+document.querySelector(".arrows").appendChild(right);
+
+function scrollLeft() {
+  varx = Math.max(0, varx - 540);
+  carrusel.scrollLeft = varx;
+}
+
+function scrollRight() {
+  varx = Math.max(diferencia, varx + 540);
+  carrusel.scrollLeft = varx;
+}
+
 function llamarAJAXDatos(videojuegoID) {
   //Recogida de datos en un array
   let xhttp = new XMLHttpRequest();
