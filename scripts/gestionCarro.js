@@ -7,8 +7,13 @@ document.getElementById("comprar").addEventListener("click", function () {
 });
 
 function llamarAJAX() {
-  let cookie = document.cookie.split(";");
-  let usuario = cookie[1].split("=");
+  let cookie = document.cookie.split("; ");
+  let usuario;
+  for (let i = 0; i < 3; ++i) {
+    if (cookie[i].split("=")[0] == "correoCliente") {
+      usuario = cookie[i].split("=")[1];
+    }
+  }
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     console.log(this.readyState + ":" + this.status);
@@ -20,7 +25,7 @@ function llamarAJAX() {
   };
   xhttp.open("POST", "../gestion/gestionCarrito.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("funcion=mostrar&usuario=" + usuario[1]);
+  xhttp.send("funcion=mostrar&usuario=" + usuario);
 }
 
 function mostrarCarro(respuesta) {
@@ -60,8 +65,13 @@ function mostrarCarro(respuesta) {
       borrar.className = "borrar";
       borrar.textContent = "borrar";
       borrar.addEventListener("click", function () {
-        let cookie = document.cookie.split(";");
-        let usuario = cookie[1].split("=");
+        let cookie = document.cookie.split("; ");
+        let usuario;
+        for (let i = 0; i < 3; ++i) {
+          if (cookie[i].split("=")[0] == "correoCliente") {
+            usuario = cookie[i].split("=")[1];
+          }
+        }
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           console.log(this.readyState + ":" + this.status);
@@ -80,7 +90,7 @@ function mostrarCarro(respuesta) {
           "funcion=borrar&videojuego=" +
             carro[i]["id_videojuego"] +
             "&usuario=" +
-            usuario[1]
+            usuario
         );
       });
       producto.appendChild(borrar);
@@ -97,8 +107,13 @@ function mostrarCarro(respuesta) {
 
 function comprar() {
   console.log("Comprando");
-  let cookie = document.cookie.split(";");
-  let usuario = cookie[1].split("=");
+  let cookie = document.cookie.split("; ");
+  let usuario;
+  for (let i = 0; i < 3; ++i) {
+    if (cookie[i].split("=")[0] == "correoCliente") {
+      usuario = cookie[i].split("=")[1];
+    }
+  }
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     console.log(this.readyState + ":" + this.status);
@@ -124,5 +139,5 @@ function comprar() {
   };
   xhttp.open("POST", "../gestion/gestionCarrito.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("funcion=comprar&usuario=" + usuario[1]);
+  xhttp.send("funcion=comprar&usuario=" + usuario);
 }

@@ -37,7 +37,6 @@ if (isset($_POST['registro'])) {
     $textos = explode("-", $_POST['cambiar']);
     $update = "UPDATE usuarios SET nombre = '".$textos[0]."', correo = '".$textos[1]."'
     WHERE correo = '".$textos[2]."';";
-    echo $update;
     // Paso 3: Ejecutar la consulta SQL
     if ($con->query($update) === TRUE) {
         echo "200";
