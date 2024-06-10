@@ -1,0 +1,33 @@
+
+
+
+
+
+
+
+
+
+
+TFG: ONLYGAMES
+2º Desarrollo de Aplicaciones Web (DAW)
+JORGE RODRÍGUEZ FOLGUERA
+PROFESOR-COORDINADOR: MARGARITA DOMINGO
+CURSO 23/24
+
+
+INDICE
+
+     1. DESCRIPCIÓN DEL PROYECTO
+El proyecto que he desarrollado se titula “OnlyGames”, este se trata en una tienda online de videojuegos para ordenador, donde tanto las empresas mas famosas de videojuegos, como las desarrolladoras independiente puedan abrir al público sus videojuegos, y estos puedan jugar todo tipo de juegos, tanto superventas como juegos menos conocidos.
+         1.1. ORGANIZACIÓN DE LA WEB Y SU NAVEGACIÓN
+La tienda se compone de cinco páginas visitables:
+    1) La pagina inicial “index.php”:
+       La página inicial consta de dos menús, un menú horizontal en lo alto de la página, donde se muestra el logo, con el cual, al hacer click sobre el volverás a esta página desde la pagina que lo pinchaste. Siguiendo el logo se encontrará el “breadcrumbs”, el cual te indicará la página en la que estás y el camino que se ha realizado para llegar a esa página, permitiéndote volver a la página anterior. Después, hay una barra de búsqueda, la cual te ayudará a encontrar un juego por su titulo, actualizando los videojuegos que se muestran según vas escribiendo. Luego, hay un icono de un carro el cual te llevará al carrito, siempre y cuando hayas iniciado sesión, en caso negativo te mostrará un mensaje de que deberas iniciar sesión. Y por ultimo, en caso de que no tengas una sesión iniciada tendras un enlace a la página de registro e inicio de sesión, en caso de que ya haya una sesión iniciada aparecerá un icono el cual desplegará un menu con el cual podrás ir a la pagina de usuario, donde podrás ver tus datos.
+       El segundo menú sera un menú vertical y esta localizado en el lateral izquierdo de la pantalla, con el cual podrás seleccionar los géneros que te interesan filtrando los juegos por dichos géneros seleccionados.
+       Por último, tenemos el área de visualización de los productos, donde se verán los diferentes productos con un formato de tarjetas, los cuales te mostraran la portada del videojuego, su titulo, géneros y precio. Los videojuegos que se mostraran cambiarán automáticamente según cambies los filtros o busques por titulo, en caso de no encontrar ninguno se mostrará un mensaje de que no está en la página.
+
+    2) La página de cada producto “producto.php”:
+    3) La pagina de registro e inicio de sesión “login.php”:
+    4) La pagina de visualización del carrito “carrito.php”:
+    5) La página de gestión de datos del usuario “usuario.php”:
+       
