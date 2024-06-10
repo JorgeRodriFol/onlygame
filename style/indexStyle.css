@@ -199,6 +199,51 @@ label {
   overflow-y: auto;
 }
 
+.modal {
+  visibility: hidden; /* Ocultar por defecto */
+  display: flex;
+  position: fixed; /* Fijar posición en pantalla */
+  z-index: 10; /* Colocar delante de otros elementos */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  overflow: auto; /* Habilitar scroll si es necesario */
+  display: flex; /* Usar flexbox para centrar */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+}
+
+/* Contenido del modal */
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px; /* Ancho máximo */
+  border-radius: 10px;
+  position: relative;
+}
+
+/* Botón de cierre */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .mensajeNF {
   background-color: rgba(94, 18, 107, 0.75);
   font-size: 7.5vh;

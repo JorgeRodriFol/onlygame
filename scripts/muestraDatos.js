@@ -170,7 +170,8 @@ function truncarTexto(texto, longitudMaxima) {
 function addCarrito() {
   if (!document.cookie.includes("correoCliente")) {
     const modal = document.getElementById("myModal");
-    modal.textContent = "Debes iniciar sesión para añadir productos";
+    document.querySelector("#myModal p").textContent =
+      "Debes iniciar sesión para añadir productos";
     const closeModalBtn = document.getElementsByClassName("close")[0];
     modal.style.visibility = "visible";
     closeModalBtn.onclick = function () {

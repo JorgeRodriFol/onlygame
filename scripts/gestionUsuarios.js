@@ -2,6 +2,26 @@ if (
   window.location.pathname != "/onlygame/php/paginas/login.php" &&
   window.location.pathname != "/onlygame/php/paginas/usuario.php"
 ) {
+  document.querySelector(".carrito").addEventListener("click", function () {
+    if (!document.cookie.includes("correoCliente")) {
+      event.preventDefault();
+      const modal = document.getElementById("myModal");
+      document.querySelector("#myModal p").textContent =
+        "Debes iniciar sesión para ver el carrito.";
+      const closeModalBtn = document.getElementsByClassName("close")[0];
+      modal.style.visibility = "visible";
+      closeModalBtn.onclick = function () {
+        modal.style.visibility = "hidden";
+      };
+
+      // Cerrar el modal al hacer clic fuera del contenido del modal
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.visibility = "hidden";
+        }
+      };
+    }
+  });
   if (document.cookie.includes("nombreCliente")) {
     let cookie = document.cookie.split("; ");
     let imagen;

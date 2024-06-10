@@ -70,6 +70,13 @@
       </div>
     </div>
     <div class="body">
+      <div id="myModal" class="modal">
+        <!-- Contenido del Modal -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Debes iniciar sesión para ver el carrito.</p>
+        </div>
+      </div>
       <div class="tarjeta">
         <a href="./producto.php">
           <img src="../../img/ZeldaTOTK.png" alt="" />
