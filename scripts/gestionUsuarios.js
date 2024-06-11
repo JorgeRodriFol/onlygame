@@ -76,7 +76,20 @@ function registrar() {
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-          console.log(this.response);
+          let resultado = JSON.parse(this.responseText);
+          console.log(resultado);
+          if (resultado != "404") {
+            console.log(resultado);
+            document.cookie = "nombreCliente=" + resultado["nombre"];
+            document.cookie = "correoCliente=" + resultado["correo"];
+            document.cookie = "imgCliente=" + resultado["imagen"];
+            window.location.href = "index.php";
+          } else {
+            let h3 = document.createElement("h3");
+            h3.style.color = "red";
+            h3.textContent = "El usuario o la contraseña es erronea";
+            document.querySelector(".body").appendChild(h3);
+          }
         }
       };
 

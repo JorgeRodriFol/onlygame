@@ -13,7 +13,16 @@ if (isset($_POST['registro'])) {
 
     // Paso 3: Ejecutar la consulta SQL
     if ($statement->execute()) {
-        echo "Datos insertados correctamente.";
+        $consulta = "SELECT * FROM usuarios WHERE correo = '" . $textos[0] . "' AND clave = '" . $textos[2] . "'";
+        $result = $con->query($consulta);
+
+        if ($result->num_rows > 0) {
+            // Obtener los nombres de los campos
+            $usuario = mysqli_fetch_assoc($result);
+            echo json_encode($usuario);
+        } else {
+            echo json_encode("404");
+        }
     } else {
         echo "Error al insertar datos: " . $con->error;
     }
@@ -33,10 +42,10 @@ if (isset($_POST['registro'])) {
     } else {
         echo json_encode("404");
     }
-}else if(isset($_POST['cambiar'])){
+} else if (isset($_POST['cambiar'])) {
     $textos = explode("-", $_POST['cambiar']);
-    $update = "UPDATE usuarios SET nombre = '".$textos[0]."', correo = '".$textos[1]."'
-    WHERE correo = '".$textos[2]."';";
+    $update = "UPDATE usuarios SET nombre = '" . $textos[0] . "', correo = '" . $textos[1] . "'
+    WHERE correo = '" . $textos[2] . "';";
     // Paso 3: Ejecutar la consulta SQL
     if ($con->query($update) === TRUE) {
         echo "200";
