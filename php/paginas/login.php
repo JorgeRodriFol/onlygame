@@ -21,6 +21,13 @@
 
   </div>
   <div class="body">
+  <div id="myModal" class="modal">
+        <!-- Contenido del Modal -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Debes rellenar todos los campos correctamente.</p>
+        </div>
+      </div>
     <div class="registro">
       <h1>REGISTRATE</h1>
       <label for="nombre">Nombre</label>

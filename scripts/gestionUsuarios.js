@@ -59,55 +59,111 @@ function registrar() {
     document.querySelector(".registro #password").value ==
     document.querySelector(".registro #passwordRepeat").value
   ) {
+    if (
+      document.querySelector(".registro #correo").value != "" &&
+      document.querySelector(".registro #nombre").value != "" &&
+      document.querySelector(".registro #password").value != ""
+    ) {
+      var texto =
+        document.querySelector(".registro #correo").value +
+        "-" +
+        document.querySelector(".registro #nombre").value +
+        "-" +
+        document.querySelector(".registro #password").value;
+      console.log(texto);
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(this.response);
+        }
+      };
+
+      xhttp.open("POST", "../gestion/gestionUsuarios.php", true);
+      xhttp.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded"
+      );
+      xhttp.send("registro=" + texto);
+    } else {
+      const modal = document.getElementById("myModal");
+      const closeModalBtn = document.getElementsByClassName("close")[0];
+      modal.style.visibility = "visible";
+      closeModalBtn.onclick = function () {
+        modal.style.visibility = "hidden";
+      };
+
+      // Cerrar el modal al hacer clic fuera del contenido del modal
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.visibility = "hidden";
+        }
+      };
+    }
+  } else {
+    const modal = document.getElementById("myModal");
+    const closeModalBtn = document.getElementsByClassName("close")[0];
+    modal.style.visibility = "visible";
+    closeModalBtn.onclick = function () {
+      modal.style.visibility = "hidden";
+    };
+
+    // Cerrar el modal al hacer clic fuera del contenido del modal
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.visibility = "hidden";
+      }
+    };
+  }
+}
+
+function login() {
+  if (
+    document.querySelector(".login #correo").value != "" &&
+    document.querySelector(".login #password").value != ""
+  ) {
     var texto =
-      document.querySelector(".registro #correo").value +
+      document.querySelector(".login #correo").value +
       "-" +
-      document.querySelector(".registro #nombre").value +
-      "-" +
-      document.querySelector(".registro #password").value;
+      document.querySelector(".login #password").value;
     console.log(texto);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        console.log(this.response);
+        let resultado = JSON.parse(this.responseText);
+        console.log(resultado);
+        if (resultado != "404") {
+          console.log(resultado);
+          document.cookie = "nombreCliente=" + resultado["nombre"];
+          document.cookie = "correoCliente=" + resultado["correo"];
+          document.cookie = "imgCliente=" + resultado["imagen"];
+          window.location.href = "index.php";
+        } else {
+          let h3 = document.createElement("h3");
+          h3.style.color = "red";
+          h3.textContent = "El usuario o la contraseña es erronea";
+          document.querySelector(".body").appendChild(h3);
+        }
       }
     };
 
     xhttp.open("POST", "../gestion/gestionUsuarios.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("registro=" + texto);
-  }
-}
+    xhttp.send("login=" + texto);
+  } else {
+    const modal = document.getElementById("myModal");
+    const closeModalBtn = document.getElementsByClassName("close")[0];
+    modal.style.visibility = "visible";
+    closeModalBtn.onclick = function () {
+      modal.style.visibility = "hidden";
+    };
 
-function login() {
-  var texto =
-    document.querySelector(".login #correo").value +
-    "-" +
-    document.querySelector(".login #password").value;
-  console.log(texto);
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      let resultado = JSON.parse(this.responseText);
-      console.log(resultado);
-      if (resultado != "404") {
-        console.log(resultado);
-        document.cookie = "nombreCliente=" + resultado["nombre"];
-        document.cookie = "correoCliente=" + resultado["correo"];
-        document.cookie = "imgCliente=" + resultado["imagen"];
-        window.location.href = "index.php";
-      } else {
-        let h3 = document.createElement("h3");
-        h3.style.color = "red";
-        h3.textContent = "El usuario o la contraseña es erronea";
-        document.querySelector(".body").appendChild(h3);
+    // Cerrar el modal al hacer clic fuera del contenido del modal
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.visibility = "hidden";
       }
-    }
-  };
-
-  xhttp.open("POST", "../gestion/gestionUsuarios.php", true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("login=" + texto);
+    };
+  }
 }
 
 function logout() {
