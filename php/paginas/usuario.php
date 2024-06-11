@@ -19,12 +19,6 @@
                 <a href="./index.php" tabindex="2">Inicio</a> &gt;
                 <span>Mi Cuenta</span>
             </div>
-            <div class="search-container">
-                <input type="text" placeholder="Buscar..." />
-                <button type="submit">
-                    <img src="../../img/assets/lupa.png" alt="buscar" />
-                </button>
-            </div>
             <a class="carrito" href="./carrito.php"><img src="../../img/assets/carrito-de-compras.png" alt="carrito" /></a>
         </div>
         <div class="body">
