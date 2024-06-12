@@ -193,7 +193,8 @@ body .registro {
   gap: 2vh;
 }
 
-body .registro input[type="text"] {
+body .registro input[type="text"],
+body .registro input[type="password"] {
   width: 466px;
   height: 47px;
   border: 5px solid;
@@ -229,7 +230,8 @@ body .login {
   gap: 2vh;
 }
 
-body .login input[type="text"] {
+body .registro input[type="text"],
+body .registro input[type="password"] {
   width: 466px;
   height: 47px;
   border: 5px solid;

@@ -21,13 +21,13 @@
 
   </div>
   <div class="body">
-  <div id="myModal" class="modal">
-        <!-- Contenido del Modal -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>Debes rellenar todos los campos correctamente.</p>
-        </div>
+    <div id="myModal" class="modal">
+      <!-- Contenido del Modal -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Debes rellenar todos los campos correctamente.</p>
       </div>
+    </div>
     <div class="registro">
       <h1>REGISTRATE</h1>
       <label for="nombre">Nombre</label>
@@ -37,7 +37,7 @@
       <label for="password">Contraseña</label>
       <input type="text" name="password" id="password" />
       <label for="passwordRepeat">Repita la contraseña</label>
-      <input type="text" name="passwordRepeat" id="passwordRepeat" />
+      <input type="password" name="passwordRepeat" id="passwordRepeat" />
       <div>
         <button onclick="cancelar()" type="submit">Cancelar</button>
         <button onclick="registrar()" type="submit">Aceptar</button>
@@ -48,7 +48,7 @@
       <label for="correo">Correo</label>
       <input type="text" name="correo" id="correo" />
       <label for="password">Contraseña</label>
-      <input type="text" name="password" id="password" />
+      <input type="password" name="password" id="password" />
       <div>
         <button onclick="cancelar()" type="submit">Cancelar</button>
         <button onclick="login()" type="submit">Aceptar</button>
